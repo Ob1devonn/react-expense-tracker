@@ -1,18 +1,21 @@
+import { useState } from "react";
 import ExpenseList from "./components/expense-tracker/ExpenseList";
 
 function App() {
-  const expenses = [
+  const [expenses, setExpenses] = useState([
     { id: 1, description: "aaa", amount: 10, category: "Utilities" },
     { id: 2, description: "bbb", amount: 10, category: "Utilities" },
     { id: 3, description: "ccc", amount: 10, category: "Utilities" },
     { id: 4, description: "ddd", amount: 10, category: "Utilities" },
-  ];
-
+  ]);
+  //remove table if there are not expenses remaining
+  if (expenses.length === 0) return null;
   return (
     <div>
       <ExpenseList
         expenses={expenses}
-        onDelete={(id) => console.log("Delete", id)}
+        //keep everything that does not match selected id
+        onDelete={(id) => setExpenses(expenses.filter((e) => e.id !== id))}
       />
     </div>
   );
