@@ -1,5 +1,3 @@
-import React from "react";
-
 //create expense object
 interface Expense {
   id: number;
